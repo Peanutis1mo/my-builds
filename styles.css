@@ -1,0 +1,329 @@
+:root {
+  --bg: #14120f;
+  --surface: #1d1a16;
+  --surface-2: #262119;
+  --text: #f2ede4;
+  --text-muted: #a69c8c;
+  --border: #332c22;
+
+  /* Per-project palettes, pulled from each build's own materials */
+  --cathedral: #8b7fd1;
+  --cathedral-soft: #a89bea;
+  --apartments: #e8a25c;
+  --apartments-soft: #f2c08c;
+  --island: #4fc3b0;
+  --island-soft: #7fe0cf;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, sans-serif;
+  line-height: 1.6;
+}
+
+::selection {
+  background: rgba(139, 127, 209, 0.35);
+}
+
+/* ---- Header ---- */
+
+.site-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px clamp(20px, 5vw, 64px);
+  border-bottom: 1px solid var(--border);
+}
+
+.brand {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 20px;
+  letter-spacing: -0.01em;
+}
+
+.brand-dot {
+  color: var(--cathedral-soft);
+}
+
+.site-nav {
+  display: flex;
+  gap: 28px;
+}
+
+.site-nav a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.site-nav a:hover,
+.site-nav a:focus-visible {
+  color: var(--text);
+}
+
+/* ---- Hero ---- */
+
+.hero {
+  padding: clamp(64px, 12vw, 120px) clamp(20px, 5vw, 64px) clamp(48px, 8vw, 80px);
+  max-width: 760px;
+}
+
+.hero-eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin: 0 0 20px;
+}
+
+.hero-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: clamp(40px, 7vw, 72px);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+  margin: 0 0 24px;
+  background: linear-gradient(135deg, var(--text) 40%, var(--island-soft) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-sub {
+  font-size: 17px;
+  color: var(--text-muted);
+  max-width: 520px;
+  margin: 0;
+}
+
+/* ---- Project sections ---- */
+
+.project {
+  padding: clamp(48px, 8vw, 96px) clamp(20px, 5vw, 64px);
+  border-top: 1px solid var(--border);
+}
+
+.project-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: clamp(32px, 5vw, 64px);
+  align-items: start;
+}
+
+.project-inner--reverse {
+  grid-template-columns: 1fr 1.4fr;
+}
+
+.project-inner--reverse .project-gallery {
+  order: 2;
+}
+
+.project-inner--reverse .project-info {
+  order: 1;
+}
+
+/* ---- Galleries ---- */
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 140px;
+  gap: 8px;
+}
+
+.gallery-grid--single {
+  grid-template-columns: 1fr;
+  grid-auto-rows: auto;
+}
+
+.gallery-grid img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 6px;
+  cursor: zoom-in;
+  transition: transform 0.35s ease, filter 0.35s ease;
+  filter: saturate(0.94);
+}
+
+.gallery-grid--single img {
+  border-radius: 10px;
+  aspect-ratio: 16 / 9;
+}
+
+.gallery-hero {
+  grid-column: span 3;
+  grid-row: span 2;
+  aspect-ratio: 16 / 9;
+  height: auto !important;
+}
+
+.gallery-grid img:hover {
+  transform: scale(1.02);
+  filter: saturate(1.08);
+}
+
+/* ---- Project info ---- */
+
+.biome-tag {
+  display: inline-block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  padding: 5px 10px;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+
+.project--cathedral .biome-tag { background: rgba(139, 127, 209, 0.15); color: var(--cathedral-soft); }
+.project--apartments .biome-tag { background: rgba(232, 162, 92, 0.15); color: var(--apartments-soft); }
+.project--island .biome-tag { background: rgba(79, 195, 176, 0.15); color: var(--island-soft); }
+
+.project-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: clamp(28px, 3.4vw, 38px);
+  letter-spacing: -0.01em;
+  margin: 0 0 16px;
+}
+
+.project-desc {
+  color: var(--text-muted);
+  font-size: 15.5px;
+  margin: 0 0 28px;
+  max-width: 42ch;
+}
+
+/* Stat block — styled like an in-game item tooltip */
+
+.stat-block {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 18px 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-left-width: 3px;
+  border-radius: 8px;
+  margin: 0 0 28px;
+}
+
+.project--cathedral .stat-block { border-left-color: var(--cathedral); }
+.project--apartments .stat-block { border-left-color: var(--apartments); }
+.project--island .stat-block { border-left-color: var(--island); }
+
+.stat-block > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 13px;
+}
+
+.stat-block dt {
+  color: var(--text-muted);
+}
+
+.stat-block dd {
+  margin: 0;
+  color: var(--text);
+  text-align: right;
+}
+
+.listing-link {
+  display: inline-block;
+  font-weight: 600;
+  font-size: 14.5px;
+  text-decoration: none;
+  padding-bottom: 2px;
+  border-bottom: 1.5px solid currentColor;
+  transition: opacity 0.2s ease;
+}
+
+.project--cathedral .listing-link { color: var(--cathedral-soft); }
+.project--apartments .listing-link { color: var(--apartments-soft); }
+.project--island .listing-link { color: var(--island-soft); }
+
+.listing-link:hover {
+  opacity: 0.75;
+}
+
+/* ---- Footer ---- */
+
+.site-footer {
+  padding: 40px clamp(20px, 5vw, 64px) 56px;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 13px;
+  text-align: center;
+}
+
+/* ---- Lightbox ---- */
+
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(10, 9, 7, 0.92);
+  z-index: 100;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  cursor: zoom-out;
+}
+
+.lightbox.open {
+  display: flex;
+}
+
+.lightbox img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 8px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+/* ---- Responsive ---- */
+
+@media (max-width: 860px) {
+  .site-nav {
+    display: none;
+  }
+  .project-inner,
+  .project-inner--reverse {
+    grid-template-columns: 1fr;
+  }
+  .project-inner--reverse .project-gallery,
+  .project-inner--reverse .project-info {
+    order: initial;
+  }
+  .gallery-grid {
+    grid-auto-rows: 110px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .gallery-grid img {
+    transition: none;
+  }
+}
